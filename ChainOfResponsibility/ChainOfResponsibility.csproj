@@ -39,9 +39,16 @@
     </ItemGroup>
     <ItemGroup>
         <Compile Include="Bancomat.cs" />
+        <Compile Include="Banknotes\DollarBanknote.cs"/>
         <Compile Include="Banknotes\IBanknote.cs" />
+        <Compile Include="Banknotes\TenRubleBanknote.cs"/>
         <Compile Include="CurrencyType.cs" />
         <Compile Include="Handlers\BanknoteHandler.cs" />
+        <Compile Include="Handlers\Builders\IBanknoteHandlerBuilder.cs"/>
+        <Compile Include="Handlers\Builders\FiftyDollarHandlerBuilder.cs"/>
+        <Compile Include="Handlers\Builders\HundredDollarHandlerBuilder.cs"/>
+        <Compile Include="Handlers\Builders\TenDollarHandler.cs"/>
+        <Compile Include="Handlers\Builders\TenRubleHandler.cs"/>
         <Compile Include="Handlers\DollarHandlerBase.cs" />
         <Compile Include="Handlers\FiftyDollarHandler.cs" />
         <Compile Include="Handlers\HundredDollarHandler.cs" />

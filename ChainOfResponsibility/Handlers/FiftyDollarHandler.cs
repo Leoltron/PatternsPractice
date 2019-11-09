@@ -2,9 +2,10 @@
 {
     public class FiftyDollarHandler : DollarHandlerBase
     {
-        protected override int Value => 50;
+        protected override uint Value => 50;
 
         public FiftyDollarHandler(BanknoteHandler nextHandler) : base(nextHandler)
-        { }
+        {
+        }
     }
 }
