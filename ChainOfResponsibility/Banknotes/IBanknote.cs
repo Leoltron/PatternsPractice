@@ -1,4 +1,4 @@
-﻿namespace ChainOfResponsibility
+﻿namespace ChainOfResponsibility.Banknotes
 {
     public interface IBanknote
     {

@@ -1,4 +1,6 @@
-﻿﻿ namespace ChainOfResponsibility
+﻿﻿ using ChainOfResponsibility.Handlers;
+
+  namespace ChainOfResponsibility
 {
     public class Bancomat
     {

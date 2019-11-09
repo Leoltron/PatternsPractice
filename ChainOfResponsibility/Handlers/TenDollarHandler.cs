@@ -1,4 +1,4 @@
-﻿namespace ChainOfResponsibility
+﻿namespace ChainOfResponsibility.Handlers
 {
     public class TenDollarHandler : DollarHandlerBase
     {

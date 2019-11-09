@@ -1,4 +1,4 @@
-﻿namespace ChainOfResponsibility
+namespace ChainOfResponsibility
 {
     public abstract class BanknoteHandler
     {
