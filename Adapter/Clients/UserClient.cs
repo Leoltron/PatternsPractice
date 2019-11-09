@@ -44,7 +44,8 @@ namespace Adapter.Clients
             }
             else
             {
-                // add realization by yourself
+                _secondOrm.Context.Users.Add(user);
+                _secondOrm.Context.UserInfos.Add(userInfo);
             }
 
             // you should create DbUserEntity and DbUserInfoEntity via _ormAdapter
@@ -62,7 +63,9 @@ namespace Adapter.Clients
             }
             else
             {
-                // add realization by yourself
+                var user = _secondOrm.Context.Users.First(i => i.Id == userId);
+                _secondOrm.Context.Users.Remove(user);
+                _secondOrm.Context.UserInfos.RemoveWhere(i => i.Id == user.InfoId);
             }
 
             // you should remove DbUserEntity and DbUserInfoEntity via _ormAdapter
