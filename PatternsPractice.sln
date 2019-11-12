@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AbstractFactory", "AbstractFactory\AbstractFactory.csproj", "{840F1330-2AE8-42D1-80A0-AF5CF9733AC5}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Builder", "Builder\Builder.csproj", "{01A57BCB-CFD9-47B8-8524-87F374215758}"
-EndProjectВ
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Adapter", "Adapter\Adapter.csproj", "{ACA6439D-3891-43F9-9694-AF1C169B9077}"
+EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BuilderUser", "BuilderUser\BuilderUser.csproj", "{3C03E4AB-59CF-4AA4-AC6B-DA29A95E1C3A}"
 EndProject
 Global
