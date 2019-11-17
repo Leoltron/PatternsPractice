@@ -12,5 +12,10 @@
             Recipient = recipient;
             Text = text;
         }
+
+        public override string ToString()
+        {
+            return $"{Author} -> {Recipient}: {Text}";
+        }
     }
 }
