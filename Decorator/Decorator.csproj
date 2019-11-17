@@ -38,6 +38,8 @@
         <Reference Include="System.Xml" />
     </ItemGroup>
     <ItemGroup>
+        <Compile Include="ChatClient.cs"/>
+        <Compile Include="ChatServer.cs"/>
         <Compile Include="EncryptChatClient.cs" />
         <Compile Include="IChatClient.cs" />
         <Compile Include="Message.cs" />
