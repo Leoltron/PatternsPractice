@@ -2,6 +2,8 @@
 {
     public class ReportConfig
     {
+        public string SourceFile { get; set; }
+        
         public bool WithData { get; set; }
 
         public bool WithIndex { get; set; }
