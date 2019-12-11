@@ -48,18 +48,25 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DataParsers\Providers\CsvDataParserBuilder.cs" />
+    <Compile Include="DataParsers\Providers\NoArgsDataParserBuilder.cs" />
+    <Compile Include="DataParsers\Providers\TxtDataParserBuilder.cs" />
+    <Compile Include="DataParsers\Providers\XlsxDataParserBuilder.cs" />
+    <Compile Include="Infrastructure\ConfigParser.cs" />
+    <Compile Include="Infrastructure\DataParserProvider.cs" />
     <Compile Include="Infrastructure\Transformers\Abstract\ReportServiceTransformerBase.cs" />
     <Compile Include="Infrastructure\Transformers\DataTransformer.cs" />
     <Compile Include="Infrastructure\Transformers\VolumeSumReportTransformer.cs" />
     <Compile Include="Infrastructure\Transformers\WeightSumReportTransfomer.cs" />
     <Compile Include="Infrastructure\Transformers\CostSumReportTransformer.cs" />
     <Compile Include="Infrastructure\Transformers\CountSumReportTransformer.cs" />
-    <Compile Include="Interfaces\IReportService.cs" />
+    <Compile Include="Interfaces\IConfigParser.cs" />
+    <Compile Include="Interfaces\IDataParser.cs" />
+    <Compile Include="Interfaces\IDataParserBuilder.cs" />
     <Compile Include="Models\ReportRow.cs" />
-    <Compile Include="Services\CsvReportService.cs" />
+    <Compile Include="DataParsers\CsvDataParser.cs" />
     <Compile Include="Interfaces\IDataTransformer.cs" />
     <Compile Include="Infrastructure\DataTransformerCreator.cs" />
-    <Compile Include="Services\ReportServiceBase.cs" />
     <Compile Include="Infrastructure\Transformers\WithDataReportTransformer.cs" />
     <Compile Include="Infrastructure\RowDataMapper.cs" />
     <Compile Include="Models\Report.cs" />
@@ -67,14 +74,15 @@
     <Compile Include="Models\DataRow.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Services\TxtReportService.cs" />
-    <Compile Include="Services\XlsxReportService.cs" />
+    <Compile Include="DataParsers\TextFileDataParser.cs" />
+    <Compile Include="DataParsers\TxtDataParser.cs" />
+    <Compile Include="DataParsers\XlsxDataParser.cs" />
+    <Compile Include="Services\ReportService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <None Include="Files\table.csv">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

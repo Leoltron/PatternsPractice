@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Linq;
-using Xrm.ReportUtility.Interfaces;
+using Xrm.ReportUtility.Infrastructure;
 using Xrm.ReportUtility.Models;
 using Xrm.ReportUtility.Services;
 
@@ -11,9 +11,9 @@ namespace Xrm.ReportUtility
         // "Files/table.txt" -data -weightSum -costSum -withIndex -withTotalVolume
         public static void Main(string[] args)
         {
-            var service = GetReportService(args);
+            var service = new ReportService(new ConfigParser());
 
-            var report = service.CreateReport();
+            var report = service.CreateReport(args);
 
             PrintReport(report);
 
@@ -22,29 +22,11 @@ namespace Xrm.ReportUtility
             Console.ReadLine();
         }
 
-        // Статический фабричный метод: в зависимости от файла отдает одну из реализаций IReportService или бросает исключение
-        private static IReportService GetReportService(string[] args)
-        {
-            var filename = args[0];
-
-            if (filename.EndsWith(".txt"))
-            {
-                return new TxtReportService(args);
-            }
-
-            if (filename.EndsWith(".csv"))
-            {
-                return new CsvReportService(args);
-            }
-
-            if (filename.EndsWith(".xlsx"))
-            {
-                return new XlsxReportService(args);
-            }
-
-            throw new NotSupportedException("this extension not supported");
-        }
-
+        /**
+         * Идея - вынести печать результата работы трансформатора в сам трансформатор, таким образом, при добавлении
+         * очередного трансформатора данных, достаточно будет реализовать интерфейс и добавить его в создание
+         * цепочки - улучшение реализации декоратора.
+         */
         private static void PrintReport(Report report)
         {
             if (report.Config.WithData && report.Data != null && report.Data.Any())
@@ -57,15 +39,17 @@ namespace Xrm.ReportUtility
                     headerRow = "№\t" + headerRow;
                     rowTemplate = "{0}\t" + rowTemplate;
                 }
+
                 if (report.Config.WithTotalVolume)
                 {
-                    headerRow = headerRow + "\tСуммарный объём";
-                    rowTemplate = rowTemplate + "\t{6,15}";
+                    headerRow += "\tСуммарный объём";
+                    rowTemplate += "\t{6,15}";
                 }
+
                 if (report.Config.WithTotalWeight)
                 {
-                    headerRow = headerRow + "\tСуммарный вес";
-                    rowTemplate = rowTemplate + "\t{7,13}";
+                    headerRow += "\tСуммарный вес";
+                    rowTemplate += "\t{7,13}";
                 }
 
                 Console.WriteLine(headerRow);
@@ -73,7 +57,8 @@ namespace Xrm.ReportUtility
                 for (var i = 0; i < report.Data.Length; i++)
                 {
                     var dataRow = report.Data[i];
-                    Console.WriteLine(rowTemplate, i + 1, dataRow.Name, dataRow.Volume, dataRow.Weight, dataRow.Cost, dataRow.Count, dataRow.Volume * dataRow.Count, dataRow.Weight * dataRow.Count);
+                    Console.WriteLine(rowTemplate, i + 1, dataRow.Name, dataRow.Volume, dataRow.Weight, dataRow.Cost,
+                                      dataRow.Count, dataRow.Volume * dataRow.Count, dataRow.Weight * dataRow.Count);
                 }
 
                 Console.WriteLine();
@@ -84,7 +69,7 @@ namespace Xrm.ReportUtility
                 Console.WriteLine("Итого:");
                 foreach (var reportRow in report.Rows)
                 {
-                    Console.WriteLine(string.Format("  {0,-20}\t{1}", reportRow.Name, reportRow.Value));
+                    Console.WriteLine($"  {reportRow.Name,-20}\t{reportRow.Value}");
                 }
             }
         }

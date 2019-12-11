@@ -6,7 +6,12 @@ namespace Xrm.ReportUtility.Infrastructure
 {
     public static class DataTransformerCreator
     {
-        // Статический фабричный метод: в зависимости от конфига создает разные IDataTransformer-ы
+        /**
+         * Идея - каждого наследника ReportServiceTransformerBase обернуть в свой фабричный метод, причем каждый
+         * класс - фабрика будет дополнительно реализовывать Matches(ReportConfig config)
+         * помимо Build(IDataTransformer dt), подобно тому, как сейчас выбирается IDataParser,
+         * только вместо выбора первого попавшегося цепочка строится из всех подошедших с DataTransformer в начале.
+         */
         public static IDataTransformer CreateTransformer(ReportConfig config)
         {
             IDataTransformer service = new DataTransformer(config);
